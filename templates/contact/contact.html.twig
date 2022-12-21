@@ -1,0 +1,60 @@
+{% extends 'contact/_base.html.twig' %}
+
+ {% block body_mail %}
+     <tr>
+         <td height="30" style="font-size: 30px; line-height: 30px"> &nbsp;</td>
+     </tr>
+     <tr>
+         <td align="center" style="font-family: Helvetica, sans-serif; text-align: center; font-size: 40px; mso-line-height-rule: exactly; line-height: 28px">
+             Bonjour,
+         </td>
+     </tr>
+     <tr>
+         <td height="30" style="font-size: 30px; line-height: 30px"> &nbsp;</td>
+     </tr>
+     <tr>
+         <td align="center" style="font-family: Helvetica, sans-serif; text-align: center; font-size: 40px; mso-line-height-rule: exactly; line-height: 28px">
+             Un nouveau client aimerait vous contacter.
+         </td>
+     </tr>
+     <tr>
+         <td height="30" style="font-size: 30px; line-height: 30px"> &nbsp;</td>
+     </tr>
+     <table cellpadding="0" cellspacing="0" width="100%" border="0">
+         <tr>
+             <td style="font-family: Helvetica, sans-serif; text-align: center; font-size: 24px; mso-line-height-rule: exactly;">
+                 Voici ces informations:
+             </td>
+         </tr>
+         <tr>
+             <td height="30" style="font-size: 30px; line-height: 30px"> &nbsp;</td>
+         </tr>
+         <tr>
+             <td  style="font-family: Helvetica, sans-serif; text-align: center; font-size: 18px; mso-line-height-rule: exactly;">
+                 Nom : {{ contact.name }}
+             </td>
+         </tr>
+         <tr>
+             <td style="font-family: Helvetica, sans-serif; text-align: center; font-size: 18px; mso-line-height-rule: exactly;">
+                 Email : {{ contact.email }}
+             </td>
+         </tr>
+         <tr>
+             <td height="30" style="font-size: 30px; line-height: 30px"> &nbsp;</td>
+         </tr>
+         <tr>
+             <td align="center" style="font-family: Helvetica, sans-serif; text-align: center; font-size: 24px; mso-line-height-rule: exactly;">
+                 Voici le message qu'il aimerait vous transmettre:
+             </td>
+         </tr>
+         <tr>
+             <td height="30" style="font-size: 30px; line-height: 30px"> &nbsp;</td>
+         </tr>
+         <tr>
+             <td style="font-family: Helvetica, sans-serif; text-align: center; font-size: 18px; mso-line-height-rule: exactly;">Message :</td>
+         </tr>
+         <tr>
+             <td style="font-family: Helvetica, sans-serif; text-align: center; font-size: 18px; mso-line-height-rule: exactly;"> {{ contact.content }}</td>
+         </tr>
+     </table>
+ {% endblock %}

@@ -1,0 +1,18 @@
+mail:
+  text:
+    hello: "Bonjour,"
+    new_client: "Un nouveau client aimerais vous contacter."
+    information: "Voici les informations du formulaire: "
+    name: "- Prénom: "
+    email: "- Email: "
+    content: "- Message: "
+  html:
+    hello: "Bonjour !"
+    new_client: "Un nouveau client aimerait vous contacter."
+    information: "Voici ses informations"
+    name: "Nom Prénom:"
+    email: "Email:"
+    message: "Voici sa demande:"
+
+error:
+  send_mail: "Un problème est survenue lors de l'envoye de mail"
