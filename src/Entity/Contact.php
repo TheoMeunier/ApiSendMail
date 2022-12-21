@@ -21,7 +21,7 @@ class Contact
     private string $from;
 
     #[ORM\Column(length: 255)]
-    private ?string $subject = null;
+    private string $subject;
 
     #[ORM\Column(type: Types::ARRAY)]
     private array $data = [];
