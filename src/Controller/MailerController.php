@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\Contact;
@@ -13,7 +15,6 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class MailerController extends AbstractController
 {
-
     /**
      * @param MailerServiceInterface $mailerService
      * @param SerializerInterface $serializer
@@ -21,8 +22,7 @@ class MailerController extends AbstractController
     public function __construct(
         private MailerServiceInterface $mailerService,
         private SerializerInterface $serializer
-    )
-    {
+    ) {
     }
 
     /**
@@ -43,11 +43,10 @@ class MailerController extends AbstractController
                 $contact->getSubject(),
                 'contact/contact.html.twig',
                 'contact/contact.text.twig',
-                ['contact' => $contact->getData()]
+                ['contact' => $contact->getData()],
             );
 
             return $this->json($contact, 201);
-
         } catch (NotEncodableValueException $exception) {
             return $this->json([
                 'status' => 400,

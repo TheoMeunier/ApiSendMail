@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use Psr\Log\LoggerInterface;
@@ -16,8 +18,8 @@ class MailerService implements MailerServiceInterface
      */
     public function __construct(
         private MailerInterface $mailer,
-        private LoggerInterface $logger)
-    {
+        private LoggerInterface $logger
+    ) {
     }
 
     /**
