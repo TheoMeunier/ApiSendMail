@@ -1,7 +1,8 @@
-Bonjour,
-Un nouveau client aimerais vous contacter.
+{{ 'mail.text.hello'|trans }}
+{{ 'mail.html.new_client'|trans }}
 
-Voici les informations du formulaire:
-- Prénom : {{ contact.name }}
-- Email : {{ contact.email }}
-- Message : {{ contact.content }}
+
+{{ 'mail.text.information'|trans }}
+{{ 'mail.text.name'|trans }} {{ contact.name }}
+{{ 'mail.text.email'|trans }} {{ contact.email }}
+{{ 'mail.text.content'|trans }} {{ contact.content }}
