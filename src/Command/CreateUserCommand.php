@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Command;
 
 use App\Entity\User;
@@ -26,10 +28,9 @@ class CreateUserCommand extends Command
      */
     public function __construct(
         private UserPasswordHasherInterface $passwordHasher,
-        private EntityManagerInterface  $em,
+        private EntityManagerInterface $em,
         private GenerateTokenServiceInterface $generateToken
-    )
-    {
+    ) {
         parent::__construct();
     }
 
@@ -66,7 +67,7 @@ class CreateUserCommand extends Command
 
         $this->addUser($username, $email, $password, $apiKey);
 
-        $io->success('User has been created, Here is your ApiKey: '. $apiKey);
+        $io->success('User has been created, Here is your ApiKey: ' . $apiKey);
         return Command::SUCCESS;
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Security;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,7 +18,6 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 
 class ApiKeyAuthenticator extends AbstractAuthenticator
 {
-
     /**
      * @param Request $request
      * @return bool|null
@@ -38,14 +39,13 @@ class ApiKeyAuthenticator extends AbstractAuthenticator
             throw new CustomUserMessageAuthenticationException('No API token provided');
         }
 
-        $token = str_replace('Bearer ', '' , $apikey);
+        $token = str_replace('Bearer ', '', $apikey);
 
         return new Passport(new UserBadge($token), new CustomCredentials(
             function ($credentials, UserInterface $user) {
                 return $user->getUserIdentifier() === $credentials;
             },
-
-            $token
+            $token,
         ));
     }
 

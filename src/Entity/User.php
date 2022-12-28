@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -119,7 +121,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @return void
      */
     public function eraseCredentials(): void
-    {}
+    {
+    }
 
     /**
      * @return string
