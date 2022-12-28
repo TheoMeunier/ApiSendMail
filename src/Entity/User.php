@@ -115,10 +115,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles = $roles;
     }
 
-    public function eraseCredentials(): bool
-    {
-        return $this->apiKey;
-    }
+    /**
+     * @return void
+     */
+    public function eraseCredentials(): void
+    {}
 
     /**
      * @return string

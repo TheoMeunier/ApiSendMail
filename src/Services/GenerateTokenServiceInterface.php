@@ -4,5 +4,9 @@ namespace App\Services;
 
 interface GenerateTokenServiceInterface
 {
-    public function generateToken(int $length);
+    /**
+     * @param int $length
+     * @return mixed
+     */
+    public function generateToken(int $length): mixed;
 }

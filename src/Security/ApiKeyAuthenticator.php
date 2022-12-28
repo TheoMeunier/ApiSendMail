@@ -33,18 +33,19 @@ class ApiKeyAuthenticator extends AbstractAuthenticator
     public function authenticate(Request $request): Passport
     {
         $apikey = $request->headers->get('Authorization');
-        $auth = substr($apikey, 7);
 
         if ($apikey === null) {
             throw new CustomUserMessageAuthenticationException('No API token provided');
         }
 
-        return new Passport(new UserBadge($auth), new CustomCredentials(
+        $token = str_replace('Bearer ', '' , $apikey);
+
+        return new Passport(new UserBadge($token), new CustomCredentials(
             function ($credentials, UserInterface $user) {
                 return $user->getUserIdentifier() === $credentials;
             },
 
-            $auth
+            $token
         ));
     }
 
