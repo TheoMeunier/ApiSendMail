@@ -22,7 +22,38 @@ MAILER_DSN=smtp://user:pass@smtp.exemple.com:25
 ```
 I let you go to the [documentation](https://symfony.com/doc/current/mailer.html) for more information
 
-II - The data expected by the api
+II - Authentification
+We authenticate to the api with an api key that is generated when the user is created, for this we have a command:
+
+```bash
+php bin/console create-user username email password
+```
+When you return from this command you will see an api key to authenticate yourself: 
+
+Here is an example with fetch:
+```js
+fetch('mon_url/api/contact', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({
+        to: "emailto@exemple.com",
+        from: "emailfrom@exemple.com",
+        subject: "Portfolio",
+        data: {
+            name: name,
+            email: email,
+            content: content,
+        }
+    })
+})
+
+```
+
+III - The data expected by the api
 
 Api attention this type of json:
 - to: email of the sender
