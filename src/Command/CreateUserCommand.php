@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\User;
+use App\Services\GenerateTokenServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -21,10 +22,12 @@ class CreateUserCommand extends Command
     /**
      * @param UserPasswordHasherInterface $passwordHasher
      * @param EntityManagerInterface $em
+     * @param GenerateTokenServiceInterface $generateToken
      */
     public function __construct(
         private UserPasswordHasherInterface $passwordHasher,
-        private EntityManagerInterface  $em
+        private EntityManagerInterface  $em,
+        private GenerateTokenServiceInterface $generateToken
     )
     {
         parent::__construct();
@@ -59,9 +62,11 @@ class CreateUserCommand extends Command
         /** @var string $password */
         $password = $input->getArgument('password');
 
-        $this->addUser($username, $email, $password);
+        $apiKey = $this->generateToken->generateToken(60);
 
-        $io->success('User has been created: '. $username);
+        $this->addUser($username, $email, $password, $apiKey);
+
+        $io->success('User has been created, Here is your ApiKey: '. $apiKey);
         return Command::SUCCESS;
     }
 
@@ -71,13 +76,14 @@ class CreateUserCommand extends Command
      * @param string $password
      * @return void
      */
-    private function addUser(string $username, string $email, string $password): void
+    private function addUser(string $username, string $email, string $password, string $apiKey): void
     {
         $user = new User();
 
         $user->setName($username);
         $user->setEmail($email);
         $user->setPassword($this->passwordHasher->hashPassword($user, $password));
+        $user->setApiKey($apiKey);
 
         $this->em->persist($user);
         $this->em->flush();

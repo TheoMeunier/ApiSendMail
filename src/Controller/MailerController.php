@@ -6,13 +6,16 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Services\MailerServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\SerializerInterface;
 
+#[IsGranted('IS_AUTHENTICATED_FULLY')]
 class MailerController extends AbstractController
 {
     /**
