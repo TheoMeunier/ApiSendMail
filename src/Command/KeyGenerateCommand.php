@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Services\GenerateTokenService;
 use sixlive\DotenvEditor\DotenvEditor;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -18,7 +19,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class KeyGenerateCommand extends Command
 {
     public function __construct(
-        private string $projectDirEnv
+        private string $projectDirEnv,
+        private GenerateTokenService $generateTokenService
     ) {
         parent::__construct($projectDirEnv);
     }
@@ -26,7 +28,7 @@ class KeyGenerateCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $secret = $this->generateRandomString(25);
+        $secret = $this->generateTokenService->generateToken();
 
         $editor = new DotenvEditor();
         $editor->load($this->projectDirEnv);
@@ -35,18 +37,5 @@ class KeyGenerateCommand extends Command
 
         $io->success('New APP_SECRET was generated: ' . $secret);
         return Command::SUCCESS;
-    }
-
-    private function generateRandomString(int $length = 16): string
-    {
-        $permitted_chart = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $random_string = '';
-
-        for ($i = 0; $i < $length; $i++) {
-            $random_character = $permitted_chart[mt_rand(0, $length - 1)];
-            $random_string .= $random_character;
-        }
-
-        return $random_string;
     }
 }
