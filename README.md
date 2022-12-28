@@ -16,13 +16,13 @@ This api is for sending emails from a contact form in a portfolio.
 
 ## Use the Api
 
-I - Configure the .env to connect to your smtp server
+###  I - Configure the .env to connect to your smtp server
 ```
 MAILER_DSN=smtp://user:pass@smtp.exemple.com:25
 ```
 I let you go to the [documentation](https://symfony.com/doc/current/mailer.html) for more information
 
-II - Authentification
+### II - Authentification
 We authenticate to the api with an api key that is generated when the user is created, for this we have a command:
 
 ```bash
@@ -53,7 +53,7 @@ fetch('mon_url/api/contact', {
 
 ```
 
-III - The data expected by the api
+### III - The data expected by the api
 
 Api attention this type of json:
 - to: email of the sender
